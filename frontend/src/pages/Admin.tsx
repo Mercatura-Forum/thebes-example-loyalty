@@ -17,6 +17,7 @@ export function Admin() {
   const [memo, setMemo] = useState('')
   const [rname, setRname] = useState('')
   const [cost, setCost] = useState('')
+  const [stock, setStock] = useState('10')
   const [photoPath, setPhotoPath] = useState<string | null>(null)
   const [note, setNote] = useState<string>()
   const [err, setErr] = useState<string>()
@@ -35,8 +36,8 @@ export function Admin() {
   async function createReward() {
     setErr(undefined); setNote(undefined)
     try {
-      await addReward(rname.trim() || 'Reward', BigInt(cost || '0'), photoPath)
-      setRname(''); setCost(''); setPhotoPath(null); if (fileRef.current) fileRef.current.value = ''
+      await addReward(rname.trim() || 'Reward', BigInt(cost || '0'), photoPath, BigInt(stock || '1'))
+      setRname(''); setCost(''); setStock('10'); setPhotoPath(null); if (fileRef.current) fileRef.current.value = ''
       setNote('Reward added'); rewards.refetch()
     } catch (e) { setErr(e instanceof Error ? e.message : String(e)) }
   }
@@ -73,6 +74,7 @@ export function Admin() {
           <div className="mt-3 grid grid-cols-[1fr_auto] gap-2">
             <input className={inp} placeholder="Reward name" value={rname} onChange={(e) => setRname(e.target.value)} />
             <input className={`${inp} w-28 nums`} inputMode="numeric" placeholder="cost pts" value={cost} onChange={(e) => setCost(e.target.value)} />
+            <input className={`${inp} w-24 nums`} inputMode="numeric" placeholder="stock" value={stock} onChange={(e) => setStock(e.target.value)} />
           </div>
           <Button className="mt-3 w-full" onClick={createReward} disabled={!rname.trim() || !cost}>Add reward</Button>
         </div>

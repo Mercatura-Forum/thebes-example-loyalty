@@ -8,8 +8,10 @@ declare global {
 export const LOYALTY_CID: number = (typeof window !== 'undefined' && window.LOYALTY_CID) || 0
 export const MEDIA_CID: number = (typeof window !== 'undefined' && window.MEDIA_CID) || 0
 
+import { wallDate } from './chainTime'
+
 export function relTime(ns: bigint): string {
-  const ms = Number(ns / 1_000_000n)
+  const ms = wallDate(ns).getTime()
   const diff = Date.now() - ms
   if (diff < 60_000) return 'just now'
   if (diff < 3_600_000) return `${Math.floor(diff / 60_000)}m ago`

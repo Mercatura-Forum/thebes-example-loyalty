@@ -25,14 +25,49 @@
   --font-sans: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Night lounge: espresso dark, gold stays gold. <html class="dark">. */
+html.dark {
+  --color-ink: #ece7df;
+  --color-ink-soft: #a39c92;
+  --color-paper: #161311;
+  --color-surface: #201c18;
+  --color-line: #363028;
+  --color-gold: #eab308;
+  --color-gold-ink: #fbbf24;
+  --tier-bronze: #d97706;
+  --tier-silver: #94a3b8;
+  --tier-gold: #eab308;
+  color-scheme: dark;
+}
+
 html, body, #root { height: 100%; }
-body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; transition: background .25s ease, color .25s ease; }
 .font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
 .nums { font-variant-numeric: tabular-nums; }
 .card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 16px; }
 
-/* The signature: a membership card — espresso → gold gradient, the tier in foil. */
-.member-card { background: linear-gradient(135deg, #2b2520 0%, #1c1917 60%, #3b2f12 100%); color: #fdf6e3; border-radius: 20px; }
+/* The signature: a membership card — espresso → gold gradient, tilting toward
+   the cursor with a holographic foil sheen that follows it. */
+.member-card {
+  background: linear-gradient(135deg, #2b2520 0%, #1c1917 60%, #3b2f12 100%);
+  color: #fdf6e3; border-radius: 20px;
+  transition: transform .18s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.foil { position: relative; overflow: hidden; --foil-x: 50%; }
+.foil::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(420px 260px at var(--foil-x) 30%,
+    rgba(255, 226, 150, 0.18), rgba(255, 190, 80, 0.06) 45%, transparent 70%);
+  transition: background-position .1s linear;
+}
+.foil::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.35;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 14px, rgba(255, 220, 140, 0.05) 14px 15px),
+    linear-gradient(115deg, transparent 30%, rgba(255, 235, 180, 0.10) 47%, rgba(255, 235, 180, 0.02) 53%, transparent 68%);
+}
 
 .media { background: var(--color-line); overflow: hidden; }
 .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
