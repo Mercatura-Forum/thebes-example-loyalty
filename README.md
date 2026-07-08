@@ -1,11 +1,18 @@
 # thebes-example-loyalty
 
 An on-chain loyalty program built on [Thebes Protocol](https://github.com/Mercatura-Forum/Thebes-Protocol-):
-a Motoko backend that holds member cards, point balances, a reward catalog, and an
-immutable transaction history, and a React frontend served as certified assets. It
-demonstrates the full shape of a Thebes application — passkey sign-in,
-controller-gated admin, flat on-chain reads, and a self-checking balance
-invariant — in one self-contained example.
+a Motoko backend that holds member cards, point balances, a stocked reward
+catalog, and an immutable ledger, and a React frontend served as certified assets.
+
+The property this example proves: **points that are conserved, tiers that pay
+honestly, shelves that reconcile.** Balances can never go negative; tiers
+multiply earnings at earn time with the bonus written as its own ledger entry
+(auditable per entry, never retroactive); reward stock decrements atomically
+with each redemption; and the **public oracle** (`invariantReportView`) plus
+the circulation seal (earned = in circulation + redeemed) re-prove it all on
+every read.
+
+Live demo: <https://memphis.mercaturaforum.com/_/raw/173835690051930/index.html>
 
 ## Architecture
 
