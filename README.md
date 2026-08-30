@@ -1,6 +1,6 @@
 # thebes-example-loyalty
 
-An on-chain loyalty program built on [Thebes Protocol](https://github.com/Mercatura-Forum/Thebes-Protocol-):
+An on-chain loyalty program built on [Thebes Protocol](https://thebesprotocol.com):
 a Motoko backend that holds member cards, point balances, a stocked reward
 catalog, and an immutable ledger, and a React frontend served as certified assets.
 
