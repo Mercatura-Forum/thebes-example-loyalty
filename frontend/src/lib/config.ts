@@ -5,8 +5,8 @@ declare global {
     MEDIA_CID?: number
   }
 }
-export const LOYALTY_CID: number = (typeof window !== 'undefined' && window.LOYALTY_CID) || 0
-export const MEDIA_CID: number = (typeof window !== 'undefined' && window.MEDIA_CID) || 0
+export const LOYALTY_CID: number = (typeof window !== 'undefined' && window.LOYALTY_CID) || 226362356292661
+export const MEDIA_CID: number = (typeof window !== 'undefined' && window.MEDIA_CID) || 187216158072878
 
 import { wallDate } from './chainTime'
 
